@@ -2,10 +2,12 @@ var listt = document.querySelectorAll(".drum");
 for(var i =0; i < listt.length;i++){
     listt[i].addEventListener("click", function (event){
         checkKey(this.innerHTML);
+        buttonAnimation(this.innerHTML);
     });
 }
 document.addEventListener("keydown", function(event){
     checkKey(event.key);
+    buttonAnimation(event.key);
 });
 function checkKey(key){
     switch (key) {
@@ -30,4 +32,11 @@ function checkKey(key){
         default:
             new Audio('./sounds/kick-bass.mp3').play();
     }
+}
+
+function buttonAnimation(currentKey){
+    document.querySelector("."+currentKey).classList.add("pressed");
+    setTimeout(function(){
+        document.querySelector("."+currentKey).classList.remove("pressed");
+    },90);
 }
